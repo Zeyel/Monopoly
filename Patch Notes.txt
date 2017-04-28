@@ -1,0 +1,16 @@
+||||||||||||||||||||||||||||||||||||||NOTES DE MISE A JOUR TOUT AU LONG DU PROJET||||||||||||||||||||||||||||||||||||
+|																													|
+|			- 27/04/17 : 																							|
+|				*Creation des notes de Patch Notes.txt																|
+|					_Pour garder une trace concrete des mises a jour effectuees dans le projet						|
+|				*Modification de l'UML :																			|
+|					_Ajout de l'attribut "gameOver" de type booleen dans la classe Joueur pour gerer la defaite 	|
+|						d'un joueur lors d'une partie a plus de 2 joueurs											|
+|				*Creation de la classe Joueur.java																	|
+|					_Il reste a ecrire les methodes 																|
+|					_Package : DonneesPrincipales																	|
+|				*Creation de la classe Partie.java																	|
+|					_Il reste a ecrire les methodes																	|
+|					_Package : DonneesPrincipales																	|
+|																													|
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
