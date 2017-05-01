@@ -78,6 +78,7 @@ public class Joueur {
 	public boolean getGameOver() {
 		return gameOver;
 	}
+			
 			// SETTERS
 	
 	private void setNom(String nom) throws InvalidParameterException {
@@ -135,4 +136,15 @@ public class Joueur {
 	public void setGameOver(boolean gameOver) {
 		this.gameOver = gameOver;
 	}
+	
+			// METHODES
+	
+	public void gain (Joueur J, int add) {
+		J.setArgent(getArgent() + add);
+	}
+	public void deplacement (Joueur J) {
+		J.setPos(getPos() + J.getJetDe());
+	}
+	
+	
 }
