@@ -38,6 +38,7 @@ public class Joueur {
 		this.gameOver = false;
 		
 	}
+			
 			// GETTERS
 	public String getNom() {
 		return nom;
@@ -129,8 +130,9 @@ public class Joueur {
 	
 	public void setProprietes(ArrayList<Integer> proprietes) throws InvalidParameterException {
 		if(proprietes.size() > 28)
-			throw new InvalidParameterException("Joueur.setProprietes() // Le nombre de proprietes possedees par le joueur depasse le nombre de proprietes existantes");
-		this.proprietes = proprietes;
+			throw new InvalidParameterException("Le nombre de proprietes possedees par le joueur depasse le nombre de proprietes existantes");
+		else
+			this.proprietes = proprietes;
 	}
 	
 	public void setGameOver(boolean gameOver) {
@@ -143,8 +145,8 @@ public class Joueur {
 		J.setArgent(getArgent() + add);
 	}
 	public void deplacement (Joueur J) {
-		J.setPos(getPos() + J.getJetDe());
+		J.setPos(J.getPos() + J.getJetDe());
 	}
-	
+
 	
 }
