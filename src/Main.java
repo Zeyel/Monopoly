@@ -1,15 +1,17 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import DonneesPrincipales.Joueur;
-import DonneesPrincipales.Partie;
-// import carte.Paquet;
-// import carte.Carte;
+import donneesPrincipales.Joueur;
+import donneesPrincipales.Partie;
+
+import carte.De;
+
 
 
 public class Main {
 	
 	public static void main (String[] args){
+		// CREATION DES JOUEURS
 		Scanner sc = new Scanner(System.in);
 		ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 		int nb;
@@ -30,5 +32,12 @@ public class Main {
 			System.out.println(j.getNom());
 		}
 		sc.close();
+		// CREATION DES DE
+		De de1 = new De();
+		De de2 = new De();
+		
+		for (Joueur j : joueurs){
+		System.out.println("Le joueur " + j.getNom() + " tire un premier de et fait un " + de1.JetDe() + " et un second qui fait " + de2.JetDe() + ", " + j.getNom() + " avance donc de " + (de1.getJet()+de2.getJet()) + " cases."); 
+		}
 	}
 }

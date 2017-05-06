@@ -1,4 +1,4 @@
-package DonneesPrincipales;
+package donneesPrincipales;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -8,8 +8,6 @@ import java.util.ArrayList;
  * Classe contenant toutes les informations sur le joueur
  * 
  * 
- * @author Tim
- * @version 1.0
  */
 
 public class Joueur {

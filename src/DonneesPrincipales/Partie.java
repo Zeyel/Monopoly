@@ -1,4 +1,4 @@
-package DonneesPrincipales;
+package donneesPrincipales;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
@@ -7,14 +7,12 @@ import java.util.ArrayList;
  * Classe englobant les informations de jeu
  * 
  * 
- * @author Geoffrey
- * @version 1.0
  */
 
 public class Partie {
 	private ArrayList<Integer> cases = new ArrayList<Integer>();
 	private ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
-	private ArrayList<De> = new ArrayList<De>();
+	private ArrayList<De> de = new ArrayList<De>();
 	private Paquet chance;
 	private Paquet communaute;
 	
