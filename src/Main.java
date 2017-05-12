@@ -32,9 +32,14 @@ public class Main {
 			System.out.println(j.getNom());
 		}
 		sc.close();
+		
 		// CREATION DES DE
 		De de1 = new De();
 		De de2 = new De();
+		
+		// CREATION DU PLATEAU
+		
+		Partie partie = new Partie();
 		
 		for (Joueur j : joueurs){
 		System.out.println("Le joueur " + j.getNom() + " tire un premier de et fait un " + de1.JetDe() + " et un second qui fait " + de2.JetDe() + ", " + j.getNom() + " avance donc de " + (de1.getJet()+de2.getJet()) + " cases."); 

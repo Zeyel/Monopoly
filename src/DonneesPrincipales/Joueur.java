@@ -131,14 +131,18 @@ public class Joueur {
 		J.setArgent(getArgent() + add);
 	}
 	
+	public void deplacement (Joueur J, int nb) {
+		J.setPos(J.getPos() + nb);
+	}
+	
 
 	public String toString() {
 		if (this.etatPrison==-1)
 			return ("Joueur : "+this.nom+" / Argent : "+this.argent+" / Position : "+this.pos+" / Pas en prison / nombre de proprietes : "+this.proprietes.size());
 		else
-			return ("Joueur : "+this.nom+" / Argent : "+this.argent+" / Position : "+this.pos+" / en prison depuis"+this.etatPrison+" tours / nombre de proprietes : "+this.proprietes.size());
+			return ("Joueur : "+this.nom+" / Argent : "+this.argent+" / Position : "+this.pos+" / en prison depuis "+this.etatPrison+" tours / nombre de proprietes : "+this.proprietes.size());
 	}
 	public boolean equals(Joueur joueur) {
-		return (this.nom==joueur.nom);
+		return (this.nom.equals(joueur.nom));
 	}
 }

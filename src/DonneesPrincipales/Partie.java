@@ -3,6 +3,9 @@ package donneesPrincipales;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
+import carte.De;
+import carte.Paquet;
+
 /**
  * Classe englobant les informations de jeu
  * 
@@ -11,13 +14,21 @@ import java.util.ArrayList;
 
 public class Partie {
 	private ArrayList<Integer> cases = new ArrayList<Integer>();
-	private ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
+	public ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 	private ArrayList<De> de = new ArrayList<De>();
 	private Paquet chance;
 	private Paquet communaute;
 	
 	
 			//CONSTRUCTEURS
+	public Partie(){
+		this.cases.clear();
+		this.joueurs.clear();
+		this.de.clear();
+		this.chance.nom.clear();
+		this.communaute.nom.clear();;
+	}
+		
 	public Partie (Integer... cases) throws InvalidParameterException {
 		if (cases == null)
 			throw new InvalidParameterException("Il n'y a pas de cases sur le plateau");
