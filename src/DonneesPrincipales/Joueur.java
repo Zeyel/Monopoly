@@ -3,7 +3,11 @@ package donneesPrincipales;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
+import exception.ProloException;
+import plateau.Parc;
 import plateau.Proprietes;
+
+
 
 
 /**
@@ -18,10 +22,9 @@ public class Joueur {
 	private int pos;                // Position du joueur sur le plateau
 	private int carteLibPris;		// Nombre de cartes "Vous etes libere de prison" du jour (0 a 2)
 	private int etatPrison;			// -1 si le joueur n'est pas en prison, sinon de 0 a 3 pour definir le nombre de jours passes en prison
-	private int nbCompagnie;		// Nombre de compagnies possedees par le joueur (0 a 2)
-	private int nbGares;			// Nombre de gares possedees par le joueur (0 a 4) 
 	private ArrayList<Proprietes> proprietes; 	// liste des proprietes du joueurs qui sont stockees en donnant la position de la propriete
 	private boolean gameOver;
+	private int dette;
 	
 			// CONSTRUCTEURS
 	public Joueur (String nom) throws InvalidParameterException {
@@ -30,10 +33,9 @@ public class Joueur {
 		this.pos= 0;
 		this.carteLibPris = 0;
 		this.etatPrison = -1;
-		this.nbCompagnie = 0;
-		this.nbGares = 0;
 		this.proprietes = new ArrayList<Proprietes>();
 		this.gameOver = false;
+		this.dette = 0;
 		
 	}
 			
@@ -56,14 +58,6 @@ public class Joueur {
 	
 	public int getEtatPrison() {
 		return etatPrison;
-	}
-	
-	public int getNbCompagnie() {
-		return nbCompagnie;
-	}
-	
-	public int getNbGares() {
-		return nbGares;
 	}
 	
 	public ArrayList<Proprietes> getProprietes() {
@@ -104,24 +98,25 @@ public class Joueur {
 		this.etatPrison = etatPrison;
 	}
 	
-	public void setNbCompagnie(int nbCompagnie) throws InvalidParameterException {
-		if(nbCompagnie < 0 || nbCompagnie > 2)
-			throw new InvalidParameterException("Joueur.setNbCompagnie() // Le nombre de compagnies possedees par le joueur est inexact car non compris entre 0 et 2");
-		this.nbCompagnie = nbCompagnie;
+	public void setProprietes(ArrayList<Proprietes> proprietes) throws InvalidParameterException {
+		if(proprietes.size() > 28)
+			throw new InvalidParameterException("Le nombre de proprietes possedees par le joueur depasse le nombre de proprietes existantes");
+		else
+			this.proprietes = proprietes;
 	}
 	
-	public void setNbGares(int nbGares) throws InvalidParameterException {
-		if(nbGares < 0 || nbGares > 4)
-			throw new InvalidParameterException("Joueur.setNbGares() // Le nombre de gares possedees par le joueur est inexact car non compris entre 0 et 4");
-		this.nbGares = nbGares;
+	// METHODES
+	
+	public void gain (Joueur J, int add) {
+		J.setArgent(getArgent() + add);
 	}
 	
-	
-	public void setGameOver(boolean gameOver) {
-		this.gameOver = gameOver;
+	public void payerJoueur(Joueur j2, int montant) throws ProloException {
+		if(this.getArgent()-montant<0)
+			throw new ProloException("Vous n'avez pas assez d'argent!");
+		this.setArgent(this.getArgent()-montant);
+		j2.setArgent(j2.getArgent()+montant);
 	}
-	
-			// METHODES
 	
 	public void gain (Joueur J, int add) {
 		J.setArgent(getArgent() + add);
@@ -131,7 +126,30 @@ public class Joueur {
 		J.setPos(J.getPos() + nb);
 	}
 	
+	public int getNbGares() {
+		int nbGares = 0;
+		for(Proprietes p : this.getProprietes())
+			if(p.getCouleur()=="noir")
+				nbGares++;
+		return nbGares;
+	}
+	
+	public int getNbCompagnies() {
+		int nbCompagnies = 0;
+		for(Proprietes p : this.getProprietes())
+			if(p.getCouleur()=="blanc")
+				nbCompagnies++;
+		return nbCompagnies;
+	}
 
+	public void GameOver(int dette, Joueur j) {
+		///TODO
+	}
+	
+	public void GameOver(int dette) {
+		///TODO
+	}
+	
 	public String toString() {
 		if (this.etatPrison==-1)
 			return ("Joueur : "+this.nom+" / Argent : "+this.argent+" / Position : "+this.pos+" / Pas en prison / nombre de proprietes : "+this.proprietes.size());
