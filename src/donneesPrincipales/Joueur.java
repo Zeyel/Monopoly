@@ -3,6 +3,7 @@ package donneesPrincipales;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
+import carte.LibPrison;
 import exception.ProloException;
 import plateau.Parc;
 import plateau.Proprietes;
@@ -20,7 +21,7 @@ public class Joueur {
 	private String nom;				// Nom du joueur lue sur l'entree standard en debut de programme
 	private int argent;				// Argent que le joueur possede, si le joueur finit un tour avec cette valeur negative, alors il perd la partie
 	private int pos;                // Position du joueur sur le plateau
-	private int carteLibPris;		// Nombre de cartes "Vous etes libere de prison" du jour (0 a 2)
+	private ArrayList<LibPrison> cartePris;		// Nombre de cartes "Vous etes libere de prison" du joueur (0 a 2)
 	private int etatPrison;			// -1 si le joueur n'est pas en prison, sinon de 0 a 3 pour definir le nombre de jours passes en prison
 	private ArrayList<Proprietes> proprietes; 	// liste des proprietes du joueurs qui sont stockees en donnant la position de la propriete
 	private boolean gameOver;
@@ -31,7 +32,7 @@ public class Joueur {
 		setNom(nom);
 		this.argent = 1500;
 		this.pos= 0;
-		this.carteLibPris = 0;
+		this.cartePris = new ArrayList<LibPrison>();
 		this.etatPrison = -1;
 		this.proprietes = new ArrayList<Proprietes>();
 		this.gameOver = false;
@@ -52,8 +53,8 @@ public class Joueur {
 		return pos;
 	}
 	
-	public int getCarteLib() {
-		return carteLibPris;
+	public LibPrison getCarteLib() {
+		return cartePris.get(0);
 	}
 	
 	public int getEtatPrison() {
@@ -86,10 +87,10 @@ public class Joueur {
 		this.pos = pos;
 	}
 	
-	public void setCarteLib(int carteLibPris) throws InvalidParameterException {
-		if(carteLibPris < 0 || carteLibPris > 2) 
-			throw new InvalidParameterException("Joueur.setCarteLib() // Nombre de cartes de liberation invalide");
-		this.carteLibPris = carteLibPris;
+	public void addCarteLib(LibPrison carte) throws InvalidParameterException {
+		if (carte == null)
+			throw new InvalidParameterException("La carte n'est pas valide");
+		this.cartePris.add(carte);
 	}
 	
 	public void setEtatPrison(int etatPrison) throws InvalidParameterException {

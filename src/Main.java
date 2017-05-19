@@ -45,34 +45,37 @@ public class Main {
 		
 	// CREATION DES CARTES
 		Carte c = new CarteGain("Payez votre police d'assurance s'élevant à 50€", "assurance", -50);
-		communaute.addCarte(c);
+		communaute.addCarte(c); //0
 		c = new CarteGain("Erreur de la Banque en votre faveur. Recevez 200€", "errBanque", 200);
-		communaute.addCarte(c);
+		communaute.addCarte(c); //1
 		c = new CarteGain("Payez à l'Hopital 100€.", "hopital", -100);
-		communaute.addCarte(c);
+		communaute.addCarte(c); //2
 		c = new CarteGain("Les contributions vous remboursent la somme de 20€.", "contributions", 20);
-		communaute.addCarte(c);
+		communaute.addCarte(c); //3
 		c = new CarteGain("Recevez votre revenu annuel de 100€.", "annuel", 100);
-		communaute.addCarte(c);
+		communaute.addCarte(c); //4
 		c = new CarteGain("La vente de stock vous rapporte 50€.", "stock", 50);
-		communaute.addCarte(c);
+		communaute.addCarte(c); //5
 		c = new CarteGain("Vous avez gagné le deuxième Prix de beaute. Recevez 10€.", "beaute", 10);
-		communaute.addCarte(c);
+		communaute.addCarte(c); //6
 		c = new CarteGain("Recevez votre interet sur l'emprunt a 7%. 25€.", "interet", 25);
-		communaute.addCarte(c);
+		communaute.addCarte(c); //7
 		c = new CarteGain("Payez la note du medecin.", "medecin", -50);
-		communaute.addCarte(c);
+		communaute.addCarte(c); //8
 		c = new CarteGain("Vous heritez de 100€.", "heritage", 100);
-		communaute.addCarte(c);
+		communaute.addCarte(c); //9
+		c = new CarteGain("Payez une amende de 10€ ou bien tirez une carte \"Chance\"", "amOuCh", -10);
+		communaute.addCarte(c); //10
 		c = new CarteDeplacement("Avancez jusqu'a la case depart.", "depart", 0);
-		communaute.addCarte(c);
+		communaute.addCarte(c); //11
 		c = new CarteDeplacement("Allez en prison, ne passez pas par la case depart.", "goPrison", 9);
-		communaute.addCarte(c);
+		communaute.addCarte(c); //12
 		c = new CarteDeplacement("Retournez a Belleville.", "belleville", 1);
-		communaute.addCarte(c);
+		communaute.addCarte(c); //13
 		c = new CarteAnniversaire("C'est votre anniversaire, recevez 10€ de tous les joueurs.", "anniversaire", 10);
+		communaute.addCarte(c); //14
+		c = new LibPrison("Vous etes liberez de prison. Cette carte est conservee jusqu'a utilisation", "libPrisonCommu");
 		communaute.addCarte(c);
-		
 		
 		
 		

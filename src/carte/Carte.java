@@ -13,6 +13,7 @@ public abstract class Carte {
         private String descr;
         protected String nom;
         
+        // GETTERS
         public String getDescr() {
                 return descr;
         }

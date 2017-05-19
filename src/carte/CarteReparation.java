@@ -53,6 +53,6 @@ public class CarteReparation extends Carte{
 			joueur.payerParc(loy, parc);
 		} catch (ProloException p) {
 			joueur.GameOver(joueur.getArgent()-((nbm*getMontantMaison())+(nbh*getMontantHotel())));
-		};
+		}
 	}
 }

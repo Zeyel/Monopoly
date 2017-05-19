@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.Scanner;
 
 import donneesPrincipales.Joueur;
+import exception.*;
 
 /**
  * Classe définissant les cartes piochées ayant un impact direct sur l'argent du joueur
@@ -30,7 +31,7 @@ public class CarteGain extends Carte {
                 return this.gain;
         }
         
-        public void action(Joueur joueur) {
+        public void action(Joueur joueur) throws ProloException, ChanceException {
         	
    			if (this.nom == "amOuCh") {
        			Scanner sc = new Scanner(System.in);
@@ -38,17 +39,19 @@ public class CarteGain extends Carte {
        			String answer;
        			do {
        				answer = sc.nextLine();
-       				if ((answer != "o") && (answer != "n") && (answer != "O") && (answer != "N"))
-       					System.out.println("Saisir uniquement o/n/O/N");
+       				if ((answer != "o") && (answer != "n") && (answer != "O") && (answer != "N") || (joueur.getArgent()-(gain)<0))
+       					System.out.println("Saisir uniquement o/n/O/N ou vous n'avez pas assez d'argent pour payer l'amende");
        				
-   			} while ((answer != "o") && (answer != "n") && (answer != "O") && (answer != "N"));
+   			} while ((answer != "o") && (answer != "n") && (answer != "O") && (answer != "N")  || (joueur.getArgent()-(gain)<0));
        		sc.close();
-       			
-       			// TODO URGENT
-                if ((joueur.getArgent()-(gain))<0)
-                   //     joueur.setGameOver(true);
+       		if ((answer == "o") || (answer == "O"))
+       			joueur.setArgent(joueur.getArgent() + gain);
+       		else
+       			throw new ChanceException();
+   			}	
+   			else  if ((joueur.getArgent()+(gain))<0)
+                   throw new ProloException();
                 joueur.setArgent(joueur.getArgent() + gain);
         }
 
-        }
 }
