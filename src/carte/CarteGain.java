@@ -42,7 +42,7 @@ public class CarteGain extends Carte {
        					System.out.println("Saisir uniquement o/n/O/N");
        				
    			} while ((answer != "o") && (answer != "n") && (answer != "O") && (answer != "N"));
-        	
+       		sc.close();
        			
        			// TODO URGENT
                 if ((joueur.getArgent()-(gain))<0)
