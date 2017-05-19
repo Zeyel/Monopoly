@@ -33,7 +33,5 @@ public abstract class Carte {
                 this.nom = nom;
         }
         
-        public void action(){
-        	
-        }
+        public void action(){}
 }

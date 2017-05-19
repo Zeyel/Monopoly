@@ -7,19 +7,25 @@ public class Parc implements Cases{
 	
 	
 	// CONSTRUCTEUR
+	
 	public Parc(){
 		this.setJackpot(0);
 	}
+	
 	// GETTER
 	
 	public int getJackpot(){
 		return this.jackpot;
 	}
+	
 	// SETTER
+	
 	public void setJackpot(int i) {
 		this.jackpot = i;
 	}
+	
 	// METHODES
+	
 	public void action(Joueur joueur) {
 		System.out.println("Vous etes tombe sur le parc gratuit ! JACKPOT !!");
 		if (this.jackpot==0)
