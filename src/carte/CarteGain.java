@@ -8,7 +8,6 @@ import donneesPrincipales.Joueur;
 /**
  * Classe définissant les cartes piochées ayant un impact direct sur l'argent du joueur
  * 
- * 
  */
 
 public class CarteGain extends Carte {
@@ -29,8 +28,8 @@ public class CarteGain extends Carte {
         }
         
         public void action(Joueur joueur) {
-                if ((joueur.getArgent()-(gain))<0)
-                        joueur.setGameOver(true);
+                if ((joueur.getArgent()+gain)<0)
+                        joueur.GameOver(joueur.getArgent()+gain);
                 joueur.setArgent(joueur.getArgent() + gain);
         }
 }
