@@ -2,6 +2,8 @@ package carte;
 
 
 import java.security.InvalidParameterException;
+import java.util.Scanner;
+import java.util.Scanner;
 
 import donneesPrincipales.Joueur;
 
@@ -29,8 +31,22 @@ public class CarteGain extends Carte {
         }
         
         public void action(Joueur joueur) {
+        	
+   			if (this.nom == "amOuCh") {
+       			Scanner sc = new Scanner(System.in);
+       			System.out.println("Souhaitez vous payer l'amende ? (o pour oui / n pour non)");
+       			String answer;
+       			do {
+       				answer = sc.nextLine();
+       				if ((answer != "o") && (answer != "n") && (answer != "O") && (answer != "N"))
+       					System.out.println("Saisir uniquement o/n/O/N");
+       				
+   			} while ((answer != "o") && (answer != "n") && (answer != "O") && (answer != "N"));
+        	
                 if ((joueur.getArgent()-(gain))<0)
                         joueur.setGameOver(true);
                 joueur.setArgent(joueur.getArgent() + gain);
+        }
+
         }
 }

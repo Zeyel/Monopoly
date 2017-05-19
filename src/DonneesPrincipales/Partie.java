@@ -22,11 +22,11 @@ public class Partie {
 	
 			//CONSTRUCTEURS
 	public Partie(){
-		this.cases.clear();
-		this.joueurs.clear();
-		this.de.clear();
-		this.chance.nom.clear();
-		this.communaute.nom.clear();;
+		this.cases = new ArrayList<Integer>();
+		this.joueurs = new ArrayList<Joueur>();
+		this.de = new ArrayList<De>();
+		this.chance = null;
+		this.communaute = null;
 	}
 		
 	public Partie (Integer... cases) throws InvalidParameterException {
@@ -44,6 +44,11 @@ public class Partie {
 			this.joueurs.add(joueur);
 		}
 	}
+	
+	public Partie(De... de) {
+		for(De des:de)
+			this.de.add(des);
+	}
 			
 			//GETTERS
 	public ArrayList<Joueur> getJoueurs() {
@@ -56,6 +61,14 @@ public class Partie {
 			throw new InvalidParameterException("Il n'y a pas de joueurs en paramètres");
 		else
 			this.joueurs = joueurs;
+	}
+	
+	public void addDe (De dice) {
+		this.de.add(dice);
+	}
+	
+	public void addJoueur (Joueur j) {
+		this.joueurs.add(j);
 	}
 
 			//METHODES

@@ -3,6 +3,8 @@ package donneesPrincipales;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
+import plateau.Proprietes;
+
 
 /**
  * Classe contenant toutes les informations sur le joueur
@@ -18,7 +20,7 @@ public class Joueur {
 	private int etatPrison;			// -1 si le joueur n'est pas en prison, sinon de 0 a 3 pour definir le nombre de jours passes en prison
 	private int nbCompagnie;		// Nombre de compagnies possedees par le joueur (0 a 2)
 	private int nbGares;			// Nombre de gares possedees par le joueur (0 a 4) 
-	private ArrayList<Integer> proprietes = new ArrayList<Integer>();	// liste des proprietes du joueurs qui sont stockees en donnant la position de la propriete
+	private ArrayList<Proprietes> proprietes; 	// liste des proprietes du joueurs qui sont stockees en donnant la position de la propriete
 	private boolean gameOver;
 	
 			// CONSTRUCTEURS
@@ -30,7 +32,7 @@ public class Joueur {
 		this.etatPrison = -1;
 		this.nbCompagnie = 0;
 		this.nbGares = 0;
-		this.proprietes.clear();
+		this.proprietes = new ArrayList<Proprietes>();
 		this.gameOver = false;
 		
 	}
@@ -64,7 +66,7 @@ public class Joueur {
 		return nbGares;
 	}
 	
-	public ArrayList<Integer> getProprietes() {
+	public ArrayList<Proprietes> getProprietes() {
 		return proprietes;
 	}
 	
@@ -114,12 +116,6 @@ public class Joueur {
 		this.nbGares = nbGares;
 	}
 	
-	public void setProprietes(ArrayList<Integer> proprietes) throws InvalidParameterException {
-		if(proprietes.size() > 28)
-			throw new InvalidParameterException("Le nombre de proprietes possedees par le joueur depasse le nombre de proprietes existantes");
-		else
-			this.proprietes = proprietes;
-	}
 	
 	public void setGameOver(boolean gameOver) {
 		this.gameOver = gameOver;
