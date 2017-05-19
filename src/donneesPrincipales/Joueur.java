@@ -118,11 +118,8 @@ public class Joueur {
 		j2.setArgent(j2.getArgent()+montant);
 	}
 	
-	public void payerParc(int montant, Parc p) throws ProloException {
-		if(this.getArgent()-montant<0)
-			throw new ProloException("Vous n'avez pas assez d'argent!");
-		this.setArgent(this.getArgent()-montant);
-		p.setJackpot(p.getJackpot() + montant);
+	public void gain (Joueur J, int add) {
+		J.setArgent(getArgent() + add);
 	}
 	
 	public void deplacement (Joueur J, int nb) {
