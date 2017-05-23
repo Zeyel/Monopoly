@@ -2,6 +2,10 @@ package carte;
 
 import java.security.InvalidParameterException;
 
+import donneesPrincipales.Joueur;
+import exception.ChanceException;
+import exception.ProloException;
+
 /**
  * Classe abstraite modélisant une carte en général (tout jeu de plateau confondu)
  * 
@@ -35,4 +39,8 @@ public abstract class Carte {
         }
         
         public void action(){}
+
+		public void action(Joueur j) throws ProloException, ChanceException{
+			
+		}
 }

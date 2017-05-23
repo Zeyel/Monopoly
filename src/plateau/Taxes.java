@@ -12,6 +12,10 @@ public class Taxes implements Cases {
 	public Taxes(){
 		this.setMontant(0);
 	}
+	
+	public Taxes(int i){
+		this.setMontant(i);
+	}
 	//GETTER
 	public int montant(){
 		return this.montant;
@@ -36,7 +40,6 @@ public class Taxes implements Cases {
 		if (this.montant< 0)
 			throw new InvalidParameterException("Le montant du parc n'a pas été initialisée");
 		parc.setJackpot(this.montant);
-		this.setMontant(0);
 	}
 
 }

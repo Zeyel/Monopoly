@@ -2,6 +2,10 @@ package carte;
 
 import java.util.ArrayList;
 
+import donneesPrincipales.Joueur;
+import exception.ChanceException;
+import exception.ProloException;
+
 /**
  * Classe définissant un paquet de carte (communauté, chance)
  * 
@@ -26,7 +30,7 @@ public class Paquet {
         	this.pack.add(carte);
         }
         
-        public void tirerCarte(){
+        public void tirerCarte(Joueur j) throws ChanceException, ProloException{
                 if (this.pack==null)
                         throw new NullPointerException("Il n'y a plus de cartes dans le paquet");
                 Carte e = this.pack.get(0);
@@ -36,6 +40,6 @@ public class Paquet {
                 	this.pack.add(e);
                 	this.pack.remove(0);
                 }
-                e.action();
+                e.action(j);
         }
 }

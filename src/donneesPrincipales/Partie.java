@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import carte.De;
 import carte.Paquet;
+import plateau.Cases;
 
 /**
  * Classe englobant les informations de jeu
@@ -13,7 +14,7 @@ import carte.Paquet;
  */
 
 public class Partie {
-	private ArrayList<Integer> cases = new ArrayList<Integer>();
+	private ArrayList<Cases> cases = new ArrayList<Cases>();
 	public ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 	private ArrayList<De> de = new ArrayList<De>();
 	private Paquet chance;
@@ -22,32 +23,11 @@ public class Partie {
 	
 			//CONSTRUCTEURS
 	public Partie(){
-		this.cases = new ArrayList<Integer>();
+		this.cases = new ArrayList<Cases>();
 		this.joueurs = new ArrayList<Joueur>();
 		this.de = new ArrayList<De>();
 		this.chance = null;
 		this.communaute = null;
-	}
-		
-	public Partie (Integer... cases) throws InvalidParameterException {
-		if (cases == null)
-			throw new InvalidParameterException("Il n'y a pas de cases sur le plateau");
-		for(Integer cas:cases) {
-			this.cases.add(cas);
-		}
-			
-	}
-	public Partie (Joueur... joueurs) throws InvalidParameterException {
-		if (joueurs == null)
-			throw new InvalidParameterException("Il n'y a pas de joueurs dans la partie");
-		for(Joueur joueur:joueurs) {
-			this.joueurs.add(joueur);
-		}
-	}
-	
-	public Partie(De... de) {
-		for(De des:de)
-			this.de.add(des);
 	}
 			
 			//GETTERS
@@ -67,10 +47,19 @@ public class Partie {
 		this.de.add(dice);
 	}
 	
+	public void addCase (Cases c) {
+		this.cases.add(c);
+	}
+	
 	public void addJoueur (Joueur j) {
 		this.joueurs.add(j);
 	}
-
+	public void setChance (Paquet c) {
+		this.chance = c; 
+	}
+	public void setCommunaute (Paquet c) {
+		this.communaute = c;
+	}
 			//METHODES
 	
 

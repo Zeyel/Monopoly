@@ -5,12 +5,11 @@ import exception.ProloException;
 import plateau.Parc;
 import plateau.Proprietes;
 
-import java.security.InvalidParameterException;
-import java.util.ArrayList;
-
 public class CarteReparation extends Carte{
 	private int montantMaison;
 	private int montantHotel;
+	
+	//CONSTRUCTEUR
 	public CarteReparation (String descr, String nom, int montantMaison, int montantHotel) {
 		super.setDescr(descr);
 		super.setNom(nom);

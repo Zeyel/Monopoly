@@ -127,7 +127,9 @@ public class Joueur {
 	}
 	
 	public void deplacement (Joueur J, int nb) {
-		J.setPos(J.getPos() + nb);
+		if ((J.getPos() + nb) / 40 == 1)
+			J.setArgent(J.getArgent()+200);
+		J.setPos((J.getPos() + nb) % 40);
 	}
 	
 	public int getNbGares() {

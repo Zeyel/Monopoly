@@ -49,7 +49,7 @@ public class CarteGain extends Carte {
        		else
        			throw new ChanceException();
    			}	
-   			else  if ((joueur.getArgent()+(gain))<0)
+   			else  if ((joueur.getArgent()-(gain))<0)
                    throw new ProloException();
                 joueur.setArgent(joueur.getArgent() + gain);
         }

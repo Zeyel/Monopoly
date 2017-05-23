@@ -28,15 +28,20 @@ public class CarteDeplacement extends Carte{
         }
         
         public void action(Joueur joueur)        throws InvalidParameterException {
-                if (joueur == null)
-                        throw new InvalidParameterException("Le joueur n'existe pas");
-                if (this.nom == "goPrison")
-                        joueur.setPos(10);
-                        joueur.setEtatPrison(0);
-                if (this.nom == "belleville")
-                        joueur.setPos(1);
-                if (this.nom == "reculer")
-                        joueur.setPos(joueur.getPos()-3);
-                joueur.deplacement(joueur, caseArrivee);
+        	if (joueur == null)
+                throw new InvalidParameterException("Le joueur n'existe pas");
+        	switch (this.nom) {
+            	case "goPrison" : 
+                    joueur.setPos(10);
+                    joueur.setEtatPrison(0);
+            	case "belleville" :
+            		joueur.setPos(1);
+            	case "reculer" :
+            		joueur.setPos(joueur.getPos()-3);
+            	default :
+            		if (joueur.getPos()> caseArrivee)
+                		joueur.setArgent(joueur.getArgent()+200);
+                joueur.setPos(caseArrivee);
+        	}
         }
 }

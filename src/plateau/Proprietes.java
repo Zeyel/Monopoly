@@ -23,10 +23,11 @@ public abstract class Proprietes implements Cases {
 		this.nbMaisons = 0;
 	}
 	
-	public Proprietes(String nom, String couleur, int prix, Integer ... i){
+	public Proprietes(String nom, String couleur, int prix){
 		this.setNom(nom);
 		this.setPrix(prix);
 		this.setCouleur(couleur);
+			
 	}
 	
 	//GETTERS
