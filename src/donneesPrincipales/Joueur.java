@@ -7,6 +7,7 @@ import carte.LibPrison;
 import exception.ProloException;
 import plateau.Parc;
 import plateau.Proprietes;
+import plateau.Terrain;
 
 
 
@@ -65,6 +66,24 @@ public class Joueur {
 		return proprietes;
 	}
 	
+	public ArrayList<Terrain> getTerrain() {
+		ArrayList<Terrain> res = new ArrayList<Terrain>();
+		for (Proprietes P : this.proprietes) {
+			if (P.getClass().getName() == "Terrain")
+				res.add((Terrain) P);
+		}
+		return res;
+	}
+	
+	public int getNbProp(String couleur){
+		int cpt =0;
+		for (Proprietes P : this.getProprietes()) {
+			if (P.getCouleur() == couleur)
+				cpt++;
+		}
+		return cpt;
+	}
+	
 	public boolean getGameOver() {
 		return gameOver;
 	}
@@ -105,6 +124,9 @@ public class Joueur {
 		else
 			this.proprietes = proprietes;
 	}
+	public void setGameOver() {
+		this.gameOver = true;
+	}
 	
 	// METHODES
 	
@@ -113,17 +135,19 @@ public class Joueur {
 	}
 	
 	public void payerJoueur(Joueur j2, int montant) throws ProloException {
-		if(this.getArgent()-montant<0)
-			throw new ProloException("Vous n'avez pas assez d'argent!");
-		this.setArgent(this.getArgent()-montant);
 		j2.setArgent(j2.getArgent()+montant);
+		if(this.getArgent()-montant<0)
+			throw new ProloException(montant);
+		this.setArgent(this.getArgent()-montant);
+
 	}
 	
 	public void payerParc(int montant, Parc p) throws ProloException {
-		if(this.getArgent()-montant<0)
-			throw new ProloException("Vous n'avez pas assez d'argent!");
-		this.setArgent(this.getArgent()-montant);
 		p.setJackpot(p.getJackpot() + montant);
+		if(this.getArgent()-montant<0)
+			throw new ProloException(montant);
+		this.setArgent(this.getArgent()-montant);
+
 	}
 	
 	public void deplacement (Joueur J, int nb) {
@@ -132,28 +156,8 @@ public class Joueur {
 		J.setPos((J.getPos() + nb) % 40);
 	}
 	
-	public int getNbGares() {
-		int nbGares = 0;
-		for(Proprietes p : this.getProprietes())
-			if(p.getCouleur()=="noir")
-				nbGares++;
-		return nbGares;
-	}
-	
-	public int getNbCompagnies() {
-		int nbCompagnies = 0;
-		for(Proprietes p : this.getProprietes())
-			if(p.getCouleur()=="blanc")
-				nbCompagnies++;
-		return nbCompagnies;
-	}
-
-	public void GameOver(int dette, Joueur j) {
-		///TODO
-	}
-	
 	public void GameOver(int dette) {
-		///TODO
+		this.setGameOver();
 	}
 	
 	public String toString() {

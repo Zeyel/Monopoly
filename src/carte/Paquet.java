@@ -14,11 +14,11 @@ import exception.ProloException;
  */
 
 public class Paquet {
-        private ArrayList<Carte> pack = new ArrayList<Carte>();
+        private ArrayList<Carte> pack;
 
         //CONSTRUCTEUR
         public Paquet() {
-        	this.pack = null;
+        	this.pack = new ArrayList<Carte>();
         }
         
         // GETTER

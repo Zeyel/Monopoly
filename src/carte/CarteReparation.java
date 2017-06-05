@@ -4,6 +4,7 @@ import donneesPrincipales.Joueur;
 import exception.ProloException;
 import plateau.Parc;
 import plateau.Proprietes;
+import plateau.Terrain;
 
 public class CarteReparation extends Carte{
 	private int montantMaison;
@@ -37,10 +38,10 @@ public class CarteReparation extends Carte{
 	}
 	
 	// METHODES
-	private void action(Joueur joueur, Parc parc) throws ProloException {
+	public void action(Joueur joueur, Parc parc) throws ProloException {
 		int nbm = 0;
 		int nbh = 0;
-		for(Proprietes P : joueur.getProprietes())
+		for(Terrain P : joueur.getTerrain())
 			if (P.getNbMaisons() == 5) {
 				nbh += 1;
 			}

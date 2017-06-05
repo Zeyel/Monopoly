@@ -24,7 +24,7 @@ public class CarteAnniversaire extends Carte{
 	}
 	
 	// METHODES
-	private void action(Joueur joueur, ArrayList<Joueur> joueurs) {
+	public void action(Joueur joueur, ArrayList<Joueur> joueurs) {
 		joueur.setArgent(joueur.getArgent()+joueurs.size()*this.montant);
 		for (Joueur j : joueurs){
 			j.setArgent(j.getArgent()-this.montant);

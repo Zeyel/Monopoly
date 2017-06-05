@@ -54,6 +54,11 @@ public class Partie {
 	public void addJoueur (Joueur j) {
 		this.joueurs.add(j);
 	}
+
+	public void bidouillage () {
+		this.joueurs.remove(0);
+	}
+	
 	public void setChance (Paquet c) {
 		this.chance = c; 
 	}

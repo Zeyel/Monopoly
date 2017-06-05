@@ -35,11 +35,10 @@ public class Taxes implements Cases {
 	public void action(Joueur joueur) {
 		System.out.println("Vous devez verser "+this.montant+" €, desole c'est pas moi qui le veut c'est l'etat.");
 		joueur.setArgent(joueur.getArgent()-this.montant);
+		
 	}
 	public void ajoutParc(Parc parc) {
-		if (this.montant< 0)
-			throw new InvalidParameterException("Le montant du parc n'a pas été initialisée");
-		parc.setJackpot(this.montant);
+		parc.setJackpot(parc.getJackpot()+this.montant);
 	}
 
 }

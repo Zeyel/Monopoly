@@ -2,6 +2,7 @@ package plateau;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import donneesPrincipales.Joueur;
 import exception.ProloException;
@@ -11,7 +12,6 @@ public abstract class Proprietes implements Cases {
 	private int prix;
 	private Joueur proprietaire;
 	private String couleur;
-	private int nbMaisons;
 	
 	//CONSTRUCTEURS
 	
@@ -20,7 +20,6 @@ public abstract class Proprietes implements Cases {
 		this.setPrix(0);
 		this.couleur = null;
 		this.proprietaire = null;
-		this.nbMaisons = 0;
 	}
 	
 	public Proprietes(String nom, String couleur, int prix){
@@ -52,10 +51,6 @@ public abstract class Proprietes implements Cases {
 		return this.couleur;
 	}
 	
-	public int getNbMaisons() {
-		return this.nbMaisons;
-	}
-	
 	// SETTERS
 	
 	public void setNom(String nom) {
@@ -68,15 +63,15 @@ public abstract class Proprietes implements Cases {
 	}
 	
 	public void setCouleur(String couleur) throws InvalidParameterException {
-		if ((couleur!="rose")||
-			(couleur!="ciel")||
-			(couleur!="violet")||
-			(couleur!="orange")||
-			(couleur!="rouge")||
-			(couleur!="jaune")||
-			(couleur!="vert")||
-			(couleur!="bleu")||
-			(couleur!="noir")||
+		if ((couleur!="rose")&&
+			(couleur!="ciel")&&
+			(couleur!="violet")&&
+			(couleur!="orange")&&
+			(couleur!="rouge")&&
+			(couleur!="jaune")&&
+			(couleur!="vert")&&
+			(couleur!="bleu")&&
+			(couleur!="noir")&&
 			(couleur!="blanc"))
 			throw new InvalidParameterException("Famille de terrain inexistante");
 		this.couleur = couleur;
@@ -86,14 +81,6 @@ public abstract class Proprietes implements Cases {
 		if(nom==null)
 			throw new InvalidParameterException("Le joueur n'existe pas");
 		this.proprietaire = proprietaire;
-	}
-	
-	public void setNbMaisons(int nbMaisons) throws InvalidParameterException{
-		if((nbMaisons<0)||(nbMaisons>5))
-			throw new InvalidParameterException("Nombre de maisons incorrect");
-		if ((this.couleur=="blanc")||(this.couleur=="noir"))
-			throw new InvalidParameterException("Une gare et/ou une compagnie ne peut avoir de maison");
-		this.nbMaisons = nbMaisons;
 	}
 	
 	// METHODES
@@ -122,5 +109,32 @@ public abstract class Proprietes implements Cases {
 		return false;
 	}
 	
-	public void action (Joueur j) throws ProloException {};
+	public void action (Joueur j) throws ProloException {
+		
+	}
+	
+	public void achat(Joueur j) {
+		Scanner sc = new Scanner(System.in);
+		int answer;
+			if (j.getArgent() - this.getPrix() > 0) {
+				System.out.println("Voulez vous acheter " + this.getNom() + " ? (o pour oui/n pour non)");
+				do {
+					answer = sc.next().charAt(0);
+					if ((answer != 'O') || (answer != 'o') || (answer != 'N') || (answer != 'n'))
+						System.out.println("Veuillez entrer O/o pour oui ou N/n pour non\n");
+				} while ((answer != 'O') || (answer != 'o') || (answer != 'N') || (answer != 'n'));
+				if ((answer == 'o') || (answer == 'O')) {
+					j.setArgent(j.getArgent() - this.getPrix());
+					this.setProprietaire(j);
+					j.getProprietes().add(this);
+					System.out.println("Vous venez d'acheter " + getNom() + ".\n " + "Votre nouveau solde est de "
+							+ j.getArgent() + "€.");
+				} else {
+					System.out.println("Vous avez refusé d'acheter la propriété " + getNom()
+							+ ".\nVous passez peut-être à côté d'une opportunité.");
+				}
+			} else
+				System.out.println("Vous n'avez pas assez d'argent pour acheter " + this.getNom() + " !");
+			sc.close();
+		}
 }
