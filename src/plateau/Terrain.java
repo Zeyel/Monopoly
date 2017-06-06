@@ -6,10 +6,22 @@ import java.util.ArrayList;
 import donneesPrincipales.Joueur;
 import exception.ProloException;
 
+/**
+ * Classe simulant un Terrain du plateau de jeu, hérite de Proprietes
+ * @author timbr
+ *
+ */
 public class Terrain extends Proprietes{
 	private ArrayList<Integer> loyer;
 	private int nbMaisons;
 	
+	/**
+	 * Constructeur d'un terrain
+	 * @param nom
+	 * @param couleur
+	 * @param prix
+	 * @param i
+	 */
 	public Terrain (String nom, String couleur, int prix, Integer ...i){
 		super.setNom(nom);
 		super.setCouleur(couleur);
@@ -22,16 +34,30 @@ public class Terrain extends Proprietes{
 	
 	// GETTERS
 	
+	/**
+	 * Renvoie sous forme d'ArrayList le loyer du Terrain
+	 * @return
+	 * @throws InvalidParameterException
+	 */
 	public ArrayList<Integer> getLoyer() throws InvalidParameterException {
 		if (this.loyer == null)
 			throw new InvalidParameterException("La liste est vide");
 		return this.loyer;
 	}
 	
+	/**
+	 * Renvoie le nombre de maisons de la case
+	 * @return
+	 */
 	public int getNbMaisons() {
 		return this.nbMaisons;
 	}
 	// SETTERS
+	/**
+	 * Initialise le nombre de maisons
+	 * @param nbMaisons
+	 * @throws InvalidParameterException
+	 */
 	public void setNbMaisons(int nbMaisons) throws InvalidParameterException{
 		if((nbMaisons<0)||(nbMaisons>5))
 			throw new InvalidParameterException("Une gare et/ou une compagnie ne peut avoir de maison");
@@ -40,6 +66,10 @@ public class Terrain extends Proprietes{
 	
 	// METHODES
 	
+	/* (non-Javadoc)
+	 * Action de la case Terrain
+	 * @see plateau.Proprietes#action(donneesPrincipales.Joueur)
+	 */
 	public void action(Joueur j) throws ProloException {
 		try{
 			this.getProprietaire();
@@ -53,6 +83,12 @@ public class Terrain extends Proprietes{
 			 else if (this.proprietaire.equals(j))
 				 System.out.println("|Bienvenue chez vous !("+this.getNom()+")");
 	}
+	/**
+	 * Procédure de paiement du joueur perd vers le joueur gagn, renvoie ProloException si le paiement ne peut être effectué
+	 * @param perd
+	 * @param gagn
+	 * @throws ProloException
+	 */
 	public void paiement(Joueur perd, Joueur gagn) throws ProloException {
 		System.out.println("|Vous êtes sur la propriété de " + gagn.getNom() + ", vous devez donc payer le loyer (" + this.loyer.get(gagn.getNbProp(this.getCouleur())-1) + "€)");
 		if (this.hasFullColor(gagn, this.getCouleur())){

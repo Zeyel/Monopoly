@@ -2,6 +2,12 @@ package plateau;
 
 import donneesPrincipales.Joueur;
 
+/**
+ * Classe symbolisant la carte AllerPrison
+ * Si le joueur tombe dessus, il va automatiquement en prison (case 10) et son EtatPrison passe à 0
+ * @author timbr
+ *
+ */
 public class AllerPrison implements Cases{
 
 	public void action(Joueur joueur) {

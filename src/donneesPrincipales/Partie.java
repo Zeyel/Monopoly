@@ -12,12 +12,12 @@ import exception.ProloException;
 import plateau.Cases;
 import plateau.Proprietes;
 
-/**
- * Classe englobant les informations de jeu
- * 
- * 
- */
 
+/**
+ * Classe contenant les éléments pour faire une partie et la jouer
+ * @author timbr
+ *
+ */
 public class Partie {
 	private ArrayList<Cases> cases = new ArrayList<Cases>();
 	public ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
@@ -26,6 +26,10 @@ public class Partie {
 	private Paquet communaute;
 
 	// CONSTRUCTEURS
+	/**
+	 * Constructeur par défaut de la partie
+	 * 
+	 */
 	public Partie() {
 		this.cases = new ArrayList<Cases>();
 		this.joueurs = new ArrayList<Joueur>();
@@ -35,18 +39,35 @@ public class Partie {
 	}
 
 	// GETTERS
+	/**
+	 * Renvoie l'ArrayList de Joueurs
+	 * @return
+	 */
 	public ArrayList<Joueur> getJoueurs() {
 		return joueurs;
 	}
 
+	/**
+	 * Renvoie le nombre de joueurs dans la partie
+	 * @return
+	 */
 	public int getNbJoueurs() {
 		return this.joueurs.size();
 	}
 
+	/**
+	 * Renvoie le dé n° index
+	 * @param index
+	 * @return
+	 */
 	public De getDe(int index) {
 		return this.de.get(index);
 	}
 
+	/**
+	 * Renvoie le nombre de joueurs en gameOver
+	 * @return
+	 */
 	public int getNbGameOver() {
 		int cpt = 0;
 		for (Joueur j : this.joueurs) {
@@ -57,6 +78,11 @@ public class Partie {
 	}
 
 	// SETTERS
+	/**
+	 * Initialise l'ArrayList de joueurs avec une ArrayList de joueurs, inutilisée je crois
+	 * @param joueurs
+	 * @throws InvalidParameterException
+	 */
 	public void setJoueurs(ArrayList<Joueur> joueurs) throws InvalidParameterException {
 		if (joueurs == null)
 			throw new InvalidParameterException("Il n'y a pas de joueurs en paramètres");
@@ -64,31 +90,59 @@ public class Partie {
 			this.joueurs = joueurs;
 	}
 
+	/**
+	 * Ajoute le dé dice à l'ArrayList de dé
+	 * @param dice
+	 */
 	public void addDe(De dice) {
 		this.de.add(dice);
 	}
 
+	/**
+	 * Ajoute la case c à l'ArrayList de Cases
+	 * @param c
+	 */
 	public void addCase(Cases c) {
 		this.cases.add(c);
 	}
 
+	/**
+	 * Ajoute le joueur j à l'ArrayList joueurs
+	 * @param j
+	 */
 	public void addJoueur(Joueur j) {
 		this.joueurs.add(j);
 	}
 
+	/**
+	 * Fonction pour parer le Scanner récalcitrant
+	 * 
+	 */
 	public void bidouillage() {
 		this.joueurs.remove(0);
 	}
 
+	/**
+	 * Ajoute le paquet c à partie.chance
+	 * @param c
+	 */
 	public void setChance(Paquet c) {
 		this.chance = c;
 	}
 
+	/**
+	 * Ajoute le paquet c à partie.communaute
+	 * @param c
+	 */
 	public void setCommunaute(Paquet c) {
 		this.communaute = c;
 	}
 
 	// METHODES
+	/**
+	 * Si il reste plus qu'un joueur en jeu, renvoie FinDePartieException, sinon continue la partie
+	 * @throws FinDePartieException
+	 */
 	public void finDePartie() throws FinDePartieException {
 		if (this.getNbGameOver() == (this.getNbJoueurs() - 1)) {
 			for (Joueur j : this.joueurs) {
@@ -104,6 +158,11 @@ public class Partie {
 		}
 
 	}
+	/**
+	 * Méthode qui simule le tour d'un joueur
+	 * @param j
+	 * @throws ChanceException
+	 */
 	public void tourJoueur(Joueur j) throws ChanceException{
 		if (j.getEtatPrison() != -1)
 			tourPrison(j, this);
@@ -133,6 +192,11 @@ public class Partie {
 		 }  
 		}
 	}
+	/**
+	 * Méthode qui simule un tour de joueur en prison
+	 * @param j
+	 * @param p
+	 */
 	private void tourPrison(Joueur j, Partie p) {
 		System.out.println("|Vous êtes en prison depuis " + j.getEtatPrison() +" tours");
 		if (j.getEtatPrison() == 3){
@@ -166,6 +230,10 @@ public class Partie {
 		}
 			
 	}
+	/**
+	 * Méthode qui propose à l'utilisateur d'acheter des maisosn si il le peut
+	 * @param couleur
+	 */
 	public void achatMaison(String couleur) {
 		
 	}
