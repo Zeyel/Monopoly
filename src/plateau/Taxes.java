@@ -3,9 +3,11 @@ package plateau;
 import java.security.InvalidParameterException;
 
 import donneesPrincipales.Joueur;
+import exception.ProloException;
 
 public class Taxes implements Cases {
 	private int montant;
+	private Parc parc;
 	
 	
 	// CONSTRUCTEUR
@@ -16,6 +18,16 @@ public class Taxes implements Cases {
 	public Taxes(int i){
 		this.setMontant(i);
 	}
+	public Taxes(int i, Parc parc) {
+		this.setMontant(i);
+		this.setParc(parc);
+	}
+
+	private void setParc(Parc parc) {
+		this.parc= parc;
+
+	}
+
 	//GETTER
 	public int montant(){
 		return this.montant;
@@ -33,12 +45,13 @@ public class Taxes implements Cases {
 	//METHODES
 
 	public void action(Joueur joueur) {
-		System.out.println("Vous devez verser "+this.montant+" �, desole c'est pas moi qui le veut c'est l'etat.");
-		joueur.setArgent(joueur.getArgent()-this.montant);
-		
+		System.out.println("|Vous devez verser "+this.montant+" €.");	
+		try {
+			joueur.payerParc(this.montant, this.parc);
+		} catch (ProloException e) {
+			joueur.setGameOver();
+		}	
+		if (!(joueur.getGameOver()))
+			System.out.println("|Votre nouveau solde est de "+ joueur.getArgent() + "€.");
 	}
-	public void ajoutParc(Parc parc) {
-		parc.setJackpot(parc.getJackpot()+this.montant);
-	}
-
 }

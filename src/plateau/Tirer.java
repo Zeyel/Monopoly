@@ -8,24 +8,23 @@ import exception.ChanceException;
 import exception.ProloException;
 
 public class Tirer implements Cases{
-	private String paquet;
+	private Paquet paquet;
 	
 	// CONSTRUCTEUR
-	public Tirer(String s) throws InvalidParameterException {
-		if ((s == null) || ((s !="chance") && (s !="communaute")))
-			throw new InvalidParameterException("La chaine n'est pas correcte");
-		this.paquet = s;
-		
+	public Tirer(Paquet pack){
+		this.setPaquet(pack);
 	}
-
-	public void action(Joueur joueur, Paquet p) throws ProloException, ChanceException {
-		p.tirerCarte(joueur);
-		
+	
+	// SETTER
+	
+	public void setPaquet(Paquet pack) {
+		this.paquet = pack;
 	}
-
-	public void action(Joueur joueur) throws ProloException {
-		// TODO Auto-generated method stub
-		
+	
+	// METHODES
+	
+	public void action(Joueur joueur) throws ProloException, ChanceException {
+		this.paquet.tirerCarte(joueur);
 	}
 	
 }

@@ -41,22 +41,27 @@ public class Terrain extends Proprietes{
 	// METHODES
 	
 	public void action(Joueur j) throws ProloException {
-		if (this.getProprietaire() == null)
+		try{
+			this.getProprietaire();
+		} catch(InvalidParameterException e) {
 			super.achat(j);
-		else if (this.getProprietaire().equals(j))
-			System.out.println("Bienvenue chez vous !");
-		else
-			paiement(j, this.getProprietaire());
+		}
+		 if (this.proprietaire == null)
+		 		System.out.println("|Vous passez simplement sur "+ this.getNom() +".");
+			 else if((this.proprietaire!=null) && (this.proprietaire !=j))
+				 paiement(j, this.proprietaire);
+			 else if (this.proprietaire.equals(j))
+				 System.out.println("|Bienvenue chez vous !("+this.getNom()+")");
 	}
 	public void paiement(Joueur perd, Joueur gagn) throws ProloException {
-		System.out.println("Vous êtes sur la propriété de " + gagn + ", vous devez donc payer le loyer (" + this.loyer.get(gagn.getNbProp(this.getCouleur())-1) + "€)");
+		System.out.println("|Vous Ãªtes sur la propriÃ©tÃ© de " + gagn.getNom() + ", vous devez donc payer le loyer (" + this.loyer.get(gagn.getNbProp(this.getCouleur())-1) + "â‚¬)");
 		if (this.hasFullColor(gagn, this.getCouleur())){
 			if (this.getNbMaisons() == 0)
 				perd.payerJoueur(gagn, (this.loyer.get(0)*2));
 			else
 				perd.payerJoueur(gagn, this.loyer.get(this.nbMaisons));
 		} else
-			perd.payerJoueur(gagn,  this.loyer.get(0));
+			perd.payerJoueur(gagn, this.loyer.get(0));
 			
 		}
 	}

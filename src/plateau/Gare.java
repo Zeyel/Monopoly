@@ -31,16 +31,21 @@ public class Gare extends Proprietes{
 	// METHODES
 	
 	public void action(Joueur j) throws ProloException {
-		if (this.getProprietaire() == null)
+		try{
+			this.getProprietaire();
+		} catch(InvalidParameterException e) {
 			super.achat(j);
-		else if (this.getProprietaire().equals(j))
-			System.out.println("Bienvenue chez vous !");
-		else
-			paiement(j, this.getProprietaire());
+		}
+		 if (this.proprietaire == null)
+		 		System.out.println("|Vous passez simplement sur "+ this.getNom() +".");
+			 else if((this.proprietaire!=null) && (this.proprietaire !=j))
+				 paiement(j, this.proprietaire);
+			 else if (this.proprietaire.equals(j))
+				 System.out.println("|Bienvenue chez vous !("+this.getNom()+")");
 	}
 	
 	public void paiement(Joueur perd, Joueur gagn) throws ProloException {
-			System.out.println("Vous êtes sur la propriété de " + gagn + ", vous devez donc payer le loyer (" + this.loyer.get(gagn.getNbProp("noir")-1) + "€)");
+			System.out.println("|Vous Ãªtes sur la propriÃ©tÃ© de " + gagn.getNom() + ", vous devez donc payer le loyer (" + this.loyer.get(gagn.getNbProp("noir")-1) + "â‚¬)");
 			int loy = (this.loyer.get(gagn.getNbProp("noir")-1));
 			int dette = Math.abs(perd.getArgent()-this.loyer.get(gagn.getNbProp("noir")-1));
 			try {

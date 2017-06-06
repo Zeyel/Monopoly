@@ -10,7 +10,7 @@ import exception.ProloException;
 public abstract class Proprietes implements Cases {
 	private String nom;
 	private int prix;
-	private Joueur proprietaire;
+	public Joueur proprietaire;
 	private String couleur;
 	
 	//CONSTRUCTEURS
@@ -104,9 +104,16 @@ public abstract class Proprietes implements Cases {
 			if(p.couleur.equals(couleur))
 				cpt++;
 		}
-		if((((couleur=="bleu")||(couleur=="rose"))&&(cpt==2))||(cpt==3))
-			return true;
-		return false;
+		switch (couleur) {
+		case "blanc":
+		case "bleu":
+		case "rose":
+			return (cpt == 2);
+		case "noir" :
+			return (cpt == 4);
+		default :
+			return (cpt == 3);
+		}
 	}
 	
 	public void action (Joueur j) throws ProloException {
@@ -114,27 +121,30 @@ public abstract class Proprietes implements Cases {
 	}
 	
 	public void achat(Joueur j) {
-		Scanner sc = new Scanner(System.in);
-		int answer;
+		String answer = null;
 			if (j.getArgent() - this.getPrix() > 0) {
-				System.out.println("Voulez vous acheter " + this.getNom() + " ? (o pour oui/n pour non)");
+				System.out.println("|Voulez vous acheter " + this.getNom() + " ? (o pour oui/n pour non)");
 				do {
-					answer = sc.next().charAt(0);
-					if ((answer != 'O') || (answer != 'o') || (answer != 'N') || (answer != 'n'))
+					answer = "o";
+					if ((answer != "O") && (answer != "o") && (answer != "N") && (answer != "n"))
 						System.out.println("Veuillez entrer O/o pour oui ou N/n pour non\n");
-				} while ((answer != 'O') || (answer != 'o') || (answer != 'N') || (answer != 'n'));
-				if ((answer == 'o') || (answer == 'O')) {
+				} while ((answer != "O") && (answer != "o") && (answer != "N") && (answer != "n"));
+				if ((answer == "o") || (answer == "O")) {
 					j.setArgent(j.getArgent() - this.getPrix());
 					this.setProprietaire(j);
 					j.getProprietes().add(this);
-					System.out.println("Vous venez d'acheter " + getNom() + ".\n " + "Votre nouveau solde est de "
-							+ j.getArgent() + "€.");
+					System.out.println("|Vous venez d'acheter " + getNom() + ".\n " + "|Votre nouveau solde est de "
+							+ j.getArgent() + "â‚¬.");
 				} else {
-					System.out.println("Vous avez refusé d'acheter la propriété " + getNom()
-							+ ".\nVous passez peut-être à côté d'une opportunité.");
+					System.out.println("|Vous avez refusÃ© d'acheter la propriÃ©tÃ© " + getNom());
 				}
 			} else
-				System.out.println("Vous n'avez pas assez d'argent pour acheter " + this.getNom() + " !");
-			sc.close();
+				System.out.println("|Vous n'avez pas assez d'argent pour acheter " + this.getNom() + " !");
 		}
+	public String demander() {
+		Scanner sc = new Scanner(System.in);
+		String answer = sc.nextLine();
+		sc.close();
+		return answer;
+	}
 }
